@@ -1,12 +1,12 @@
 const roll = require('./roll')
 
 module.exports = {
-  name: 'D6',
-  description: 'Roll D6.',
-  aliases: ['d6', 'six', 'dsix'],
+  name: 'D4',
+  description: 'Roll D4.',
+  aliases: ['d4', 'four', 'dfour'],
   usage: '[number of dice]',
   execute(message, args) {
-    const concatargs = ['6'].concat(args)
+    const concatargs = ['4'].concat(args)
     roll.execute(message, concatargs)
   },
 }

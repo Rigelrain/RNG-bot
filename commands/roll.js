@@ -7,6 +7,8 @@ module.exports = {
     // first arg = the die to roll
     let die = args.shift()
 
+    console.log(`die to roll: ${die}`)
+
     if(!die) {
       return message.reply('You got to give me a die')
     }
@@ -26,6 +28,7 @@ module.exports = {
 
     // second arg is the number of times to roll
     const times = args.shift()
+    console.log(`times to roll: ${times}`)
     let timestoroll = 1
     let result = 0
 
@@ -50,7 +53,7 @@ module.exports = {
     // random = 0..1 -> multiply+floor = integer 0..19 -> +1 gets integer 1..20
     while(timestoroll > 0) {
       result += Math.floor(Math.random() * rollnumber) + 1
-      console.log(`result so far: ${result}`)
+      // console.log(`result so far: ${result}`)
       timestoroll--
     }
 
