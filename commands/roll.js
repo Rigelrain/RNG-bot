@@ -3,15 +3,15 @@ module.exports = {
   description: 'Roll a dice given as parameter.',
   aliases: ['roll', 'dice'],
   usage: '[die, ex. d20] [number of times to roll, ex x3]',
+  args: true,
   execute(message, args) {
     // first arg = the die to roll
     let die = args.shift()
 
-    console.log(`die to roll: ${die}`)
-
     if(!die) {
       return message.reply('You got to give me a die')
     }
+    // console.log(`die to roll: ${die}`)
     
     let rollnumber = parseInt(die)
 
@@ -28,20 +28,16 @@ module.exports = {
 
     // second arg is the number of times to roll
     const times = args.shift()
-    console.log(`times to roll: ${times}`)
     let timestoroll = 1
     let result = 0
 
     if(times) {
+      // console.log(`times to roll: ${times}`)
       let usertimestoroll = parseInt(times)
       if(!usertimestoroll) {
         // user did not give a number of times to roll, check for 'x'
-        // return message.reply(`You want to roll ${userarg}, really?`)
         usertimestoroll = parseInt(times.substring(1))
-        if(!usertimestoroll) {
-          // give up
-        }
-        else {
+        if(usertimestoroll) {
           timestoroll = usertimestoroll
         }
       }
