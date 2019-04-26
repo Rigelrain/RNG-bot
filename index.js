@@ -1,14 +1,11 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix, token } = require('./config.json')
+const { prefix: configPrefix, token: configToken } = require('./config.json')
 
-/**
- * const prefix = process.env.PREFIX;
- * const token = process.env.TOKEN;
- * const dbUsername = process.env.DB_USERNAME;
- * const dbPassword = process.env.DB_PASSWORD;
- * const dbAddress = process.env.DB_ADDRESS;
-*/
+const PORT = process.env.PORT || 3042
+const prefix = process.env.PREFIX || configPrefix || '!'
+const token = process.env.TOKEN || configToken
+
 // create app
 const client = new Discord.Client()
 client.commands = new Discord.Collection()
@@ -100,3 +97,5 @@ client.on('message', message => {
 })
 
 client.login(token)
+
+require('http').createServer().listen(PORT)
