@@ -1,10 +1,9 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix: configPrefix, token: configToken } = require('./config.json')
+const { prefix: configPrefix } = require('./config.json')
 
-const PORT = process.env.PORT || 3042
 const prefix = process.env.PREFIX || configPrefix || '!'
-const token = process.env.TOKEN || configToken
+const token = process.env.TOKEN
 
 // create app
 const client = new Discord.Client()
@@ -25,7 +24,7 @@ for (const file of commandFiles) {
 
 // startup
 client.on('ready', () => {
-  console.log('Ready!')
+  // console.log('Ready!')
 })
 
 // handle msg input
@@ -91,11 +90,9 @@ client.on('message', message => {
     command.execute(message, args)
   }
   catch (error) {
-    console.error(error)
+    // console.error(error)
     message.reply('There was an error trying to execute that command!')
   }
 })
 
 client.login(token)
-
-require('http').createServer().listen(PORT)
