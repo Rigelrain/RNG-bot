@@ -26,27 +26,30 @@ module.exports = {
     }
 
     // second arg is the number of times to roll or the modifier
-    const times = args.shift()
+    let times = args.shift()
     let timestoroll = 1
     let result = 0
     let modifier = 0
 
     if(times) {
-      let usertimestoroll = parseInt(times)
-      if(!usertimestoroll) { // check for 'x' or '+'
-        if(times.substring(0,1) == '+') { // this is a modifier
-          modifier = parseInt(times.substring(1))
-        }
-        else { // it is a multiplier of dice
+      if(times.substring(0,1) == '+') { // this is a modifier
+        modifier = parseInt(times.substring(1))
+      }
+      else {
+        let usertimestoroll = parseInt(times)
+        if(!usertimestoroll) { // check for 'x' or '+'
           usertimestoroll = parseInt(times.substring(1))
           if(usertimestoroll) {
             timestoroll = usertimestoroll
           }
         }
+        else {
+          timestoroll = usertimestoroll
+        }
       }
-      else {
-        timestoroll = usertimestoroll
-      }
+    }
+    else {
+      times = 1
     }
 
     // random = 0..1 -> multiply+floor = integer 0..19 -> +1 gets integer 1..20
