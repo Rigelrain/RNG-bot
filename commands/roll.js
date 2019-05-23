@@ -34,6 +34,8 @@ module.exports = {
     if(times) {
       if(times.substring(0,1) == '+') { // this is a modifier
         modifier = parseInt(times.substring(1))
+        // return times to default so that it seems logical in the message
+        times = 1
       }
       else {
         let usertimestoroll = parseInt(times)
