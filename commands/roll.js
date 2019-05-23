@@ -71,19 +71,24 @@ module.exports = {
     // third is the modifier, unless gotten previously
     if(multiplierFound) {
       modifier = args.shift()
-      let usermodifier = parseInt(modifier)
-      if(!usermodifier) {
-        // check for '+'
-        usermodifier = parseInt(modifier.substring(1))
-        if(usermodifier) {
-          modifier = usermodifier
+      if(modifier) {
+        let usermodifier = parseInt(modifier)
+        if(!usermodifier) {
+          // check for '+'
+          usermodifier = parseInt(modifier.substring(1))
+          if(usermodifier) {
+            modifier = usermodifier
+          }
+          else {
+            modifier = 0
+          }
         }
         else {
-          modifier = 0
+          modifier = usermodifier
         }
       }
       else {
-        modifier = usermodifier
+        modifier = 0
       }
     }
 
