@@ -61,10 +61,7 @@ module.exports = {
     }
 
     // third is the modifier, unless gotten previously
-    if(!modifier || modifier > 0) { // modifier is already handled
-      // do nothing
-    }
-    else {
+    if(modifier == 0) {
       modifier = args.shift()
       let usermodifier = parseInt(modifier)
       if(!usermodifier) {
@@ -76,6 +73,9 @@ module.exports = {
         else {
           modifier = 0
         }
+      }
+      else {
+        modifier = usermodifier
       }
     }
 
