@@ -76,6 +76,6 @@ module.exports = {
 
     result += modifier
 
-    return message.reply(`Rollin D${rollnumber}! ... And with modifier ${modifier} you got: ${result}`)
+    return message.reply(`Rollin D${rollnumber} ${times} times! ... And with modifier ${modifier} you got: ${result}`)
   },
 }
