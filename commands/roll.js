@@ -79,6 +79,10 @@ module.exports = {
       }
     }
 
+    if(!modifier) {
+      modifier = 0
+    }
+
     result += modifier
 
     return message.reply(`Rollin D${rollnumber} ${times} times! ... And with modifier ${modifier} you got: ${result}`)
