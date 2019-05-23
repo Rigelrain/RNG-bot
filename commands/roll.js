@@ -28,18 +28,24 @@ module.exports = {
     // second arg is the number of times to roll or the modifier
     let times = args.shift()
     let timestoroll = 1
+    let multiplierFound = false
     let result = 0
     let modifier = 0
 
     if(times) {
-      if(times.substring(0,1) == '+') { // this is a modifier
+      const firstChar = times.substring(0,1)
+
+      if(firstChar == '+' || firstChar == '-') { // this is a modifier
         modifier = parseInt(times.substring(1))
+        if(firstChar == '-') {
+          modifier *= -1 // make it negative
+        }
         // return times to default so that it seems logical in the message
         times = 1
       }
       else {
-        let usertimestoroll = parseInt(times)
-        if(!usertimestoroll) { // check for 'x' or '+'
+        let usertimestoroll = parseInt(times) // plain number?
+        if(!usertimestoroll) { // check for 'x'
           usertimestoroll = parseInt(times.substring(1))
           if(usertimestoroll) {
             timestoroll = usertimestoroll
@@ -48,10 +54,12 @@ module.exports = {
         else {
           timestoroll = usertimestoroll
         }
+        multiplierFound = true
       }
     }
     else {
       times = 1
+      modifier = 0
     }
 
     // random = 0..1 -> multiply+floor = integer 0..19 -> +1 gets integer 1..20
@@ -61,7 +69,7 @@ module.exports = {
     }
 
     // third is the modifier, unless gotten previously
-    if(modifier == 0) {
+    if(multiplierFound) {
       modifier = args.shift()
       let usermodifier = parseInt(modifier)
       if(!usermodifier) {
@@ -77,10 +85,6 @@ module.exports = {
       else {
         modifier = usermodifier
       }
-    }
-
-    if(!modifier) {
-      modifier = 0
     }
 
     result += modifier
